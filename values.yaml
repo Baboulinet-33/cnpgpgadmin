@@ -1,6 +1,11 @@
 pgadmin4:
   servicePort: &servicePort 5050
   enabled: true
+  image:
+    registry: harbor.apps.dso.numerique-interieur.com/dockerhub
+    repository: bnoleau/pgadmin-rootless
+    tag: "8.12"
+
   fullnameOverride: pgadmin
   env:
     email:  pgadmin # email or nickname
