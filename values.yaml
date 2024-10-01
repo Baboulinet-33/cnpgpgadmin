@@ -44,8 +44,6 @@ pgadmin4:
   strategy:
     type: Recreate
   existingSecret: pgadmin4-password
-  secretKeys:
-    pgadminPasswordKey: PGADMIN_SETUP_PASSWORD
 
 db:
   backup:
