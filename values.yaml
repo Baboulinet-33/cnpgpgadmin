@@ -5,8 +5,10 @@ pgadmin4:
   env:
     email:  # email or nickname
   envVarsExtra:
-    PGADMIN_DISABLE_POSTFIX: 1
-    PGADMIN_LISTEN_PORT: *servicePort
+    - name: PGADMIN_DISABLE_POSTFIX
+      value: 1
+    - name: PGADMIN_LISTEN_PORT
+      value: *servicePort
 
   securityContext: {}
   containerSecurityContext:
@@ -41,10 +43,6 @@ pgadmin4:
   existingSecret: pgadmin4-password
   secretKeys:
     pgadminPasswordKey: PGADMIN_SETUP_PASSWORD
-  envVarsFromConfigMaps:
-    - pgadmin
-  envVarsFromSecrets:
-    - pgadmin
 
 db:
   backup:
@@ -54,7 +52,7 @@ db:
     endpointURL: "http://minio:9000"
     destinationPath: "s3://database"
     awsCredentialsSecret: aws-creds
-    
+
   resources:
     requests:
       memory: 512Mi
