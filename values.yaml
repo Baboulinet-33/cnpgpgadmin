@@ -43,14 +43,16 @@ pgadmin4:
       cpu: "500m"
   existingSecret: pgadmin4-password
   serverDefinitions:
-    firstServer:
-      Name: "Minimally Defined Server"
-      Group: "Servers"
-      Port: 5432
-      Username: "app"
-      Host: "db-rw"
-      SSLMode: "prefer"
-      MaintenanceDB: "postgres"
+    enabled: true
+    servers:
+      firstServer:
+        Name: "Minimally Defined Server"
+        Group: "Servers"
+        Port: 5432
+        Username: "app"
+        Host: "db-rw"
+        SSLMode: "prefer"
+        MaintenanceDB: "postgres"
 
 db:
   backup:
