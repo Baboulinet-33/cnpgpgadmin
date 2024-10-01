@@ -5,7 +5,6 @@ pgadmin4:
     registry: harbor.apps.dso.numerique-interieur.com/dockerhub
     repository: bnoleau/pgadmin-rootless
     tag: "8.12"
-
   fullnameOverride: pgadmin
   env:
     email:  pgadmin@domain.com
@@ -14,17 +13,14 @@ pgadmin4:
       value: "1"
     - name: PGADMIN_LISTEN_PORT
       value: "5050"
-
   securityContext: ""
   containerSecurityContext:
     enabled: false
   # disabled initContainer
   VolumePermissions:
     enabled: false
-  
   persistentVolume:
     size: 100Mi
-  
   containerPorts:
     http: *servicePort
   service:
@@ -45,10 +41,16 @@ pgadmin4:
     limits:
       memory: "256Mi"
       cpu: "500m"
-
-  strategy:
-    type: Recreate
   existingSecret: pgadmin4-password
+  serverDefinitions:
+    firstServer:
+      Name: "Minimally Defined Server"
+      Group: "Servers"
+      Port: 5432
+      Username: "app"
+      Host: "db-rw"
+      SSLMode: "prefer"
+      MaintenanceDB: "postgres"
 
 db:
   backup:
