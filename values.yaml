@@ -10,7 +10,7 @@ pgadmin4:
     - name: PGADMIN_LISTEN_PORT
       value: "5050"
 
-  securityContext: {}
+  securityContext: ""
   containerSecurityContext:
     enabled: false
   # disabled initContainer
