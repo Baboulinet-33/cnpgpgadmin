@@ -17,6 +17,9 @@ pgadmin4:
   VolumePermissions:
     enabled: false
   
+  persistentVolume:
+    size: 100Mi
+  
   containerPorts:
     http: *servicePort
   service:
