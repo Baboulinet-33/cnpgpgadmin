@@ -1,0 +1,64 @@
+pgadmin4:
+  servicePort: &servicePort 5050
+  enabled: true
+  fullnameOverride: pgadmin
+  env:
+    email:  # email or nickname
+  envVarsExtra:
+    PGADMIN_DISABLE_POSTFIX: 1
+    PGADMIN_LISTEN_PORT: *servicePort
+
+  securityContext: {}
+  containerSecurityContext:
+    enabled: false
+  # disabled initContainer
+  VolumePermissions:
+    enabled: false
+  
+  containerPorts:
+    http: *servicePort
+  service:
+    type: ClusterIP
+    port: *servicePort
+    targetPort: *servicePort
+  ingress:
+    enabled: true
+    hosts:
+      - host: pgadmin-cnpgexample.dev.numerique-interieur.com
+        paths:
+          - path: /
+            pathType: Prefix
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "250m"
+    limits:
+      memory: "256Mi"
+      cpu: "500m"
+
+  strategy:
+    type: Recreate
+  existingSecret: pgadmin4-password
+  secretKeys:
+    pgadminPasswordKey: PGADMIN_SETUP_PASSWORD
+  envVarsFromConfigMaps:
+    - pgadmin
+  envVarsFromSecrets:
+    - pgadmin
+
+db:
+  backup:
+    enabled: false
+    schedule: "0 0 * * * *"
+    retentionPolicy: 30d
+    endpointURL: "http://minio:9000"
+    destinationPath: "s3://database"
+    awsCredentialsSecret: aws-creds
+    
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+    limits:
+      memory: 512Mi
+      cpu: 500m
