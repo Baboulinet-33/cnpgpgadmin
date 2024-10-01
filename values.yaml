@@ -8,7 +8,7 @@ pgadmin4:
     - name: PGADMIN_DISABLE_POSTFIX
       value: "1"
     - name: PGADMIN_LISTEN_PORT
-      value: *servicePort
+      value: "5050"
 
   securityContext: {}
   containerSecurityContext:
