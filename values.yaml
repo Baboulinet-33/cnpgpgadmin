@@ -8,7 +8,7 @@ pgadmin4:
 
   fullnameOverride: pgadmin
   env:
-    email:  pgadmin # email or nickname
+    email:  pgadmin@domain.com
   envVarsExtra:
     - name: PGADMIN_DISABLE_POSTFIX
       value: "1"
