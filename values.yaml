@@ -3,10 +3,10 @@ pgadmin4:
   enabled: true
   fullnameOverride: pgadmin
   env:
-    email:  # email or nickname
+    email:  pgadmin # email or nickname
   envVarsExtra:
     - name: PGADMIN_DISABLE_POSTFIX
-      value: 1
+      value: "1"
     - name: PGADMIN_LISTEN_PORT
       value: *servicePort
 
