@@ -30,11 +30,11 @@ spec:
       endpointURL: {{ .Values.db.backup.endpointURL | quote }}
       s3Credentials:
         accessKeyId:
-          name: {{ .Values.db.backup.awsCredentialsSecret | quote }}
-          key: ACCESS_KEY_ID
+          name: {{ .Values.db.backup.s3CredentialsSecret | quote }}
+          key: AWS_ACCESS_KEY_ID
         secretAccessKey:
-          name: {{ .Values.db.backup.awsCredentialsSecret | quote }}
-          key: ACCESS_SECRET_KEY
+          name: {{ .Values.db.backup.s3CredentialsSecret | quote }}
+          key: AWS_SECRET_ACCESS_KEY
       wal:
         compression: gzip
         maxParallel: 8
