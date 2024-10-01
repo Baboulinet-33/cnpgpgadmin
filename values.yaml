@@ -26,7 +26,7 @@ pgadmin4:
   ingress:
     enabled: true
     hosts:
-      - host: pgadmin-cnpgexample.dev.numerique-interieur.com
+      - host: pgadmin-cnpgexample.apps.app1.numerique-interieur.com
         paths:
           - path: /
             pathType: Prefix
